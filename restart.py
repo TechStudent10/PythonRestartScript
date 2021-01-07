@@ -1,6 +1,9 @@
 import os, sys, platform
 
-currentFile = "main.py"
+currentFile = ""
+while currentFile == "" or currentFile == None:
+	currentFile = input("What is the file: ")
+
 currentInfo = ""
 
 def check():
