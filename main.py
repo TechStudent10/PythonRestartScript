@@ -4,8 +4,7 @@ numbers = []
 for i in range(1, 100):
 	numbers.append(i)
 
-def checkAnswer(answer):
-	global RANDOM_NUMBER
+def checkAnswer(answer, RANDOM_NUMBER):
 	if answer != RANDOM_NUMBER:
 		if answer > RANDOM_NUMBER:
 			return "The number is smaller"
@@ -18,20 +17,24 @@ def Game(maxGuesses=5, guess=""):
 	guesses = 0
 
 	RANDOM_NUMBER = random.choice(numbers)
-	print(RANDOM_NUMBER)
+	#print(RANDOM_NUMBER)
 
 	print("I am thinking of a number between 1 and 100. What number is it?")
 
 	while guess != RANDOM_NUMBER:
 		if guesses >= maxGuesses:
-			print("You are out of guesses.")
+			print("You are out of guesses. The number was", RANDOM_NUMBER)
 			break
 
 		guess = input("Guess> ")
-		guesses += 1
-		isAnswerCorrect = checkAnswer(int(guess))
-		print(isAnswerCorrect)
-		
+		try:
+			guesses += 1
+			isAnswerCorrect = checkAnswer(int(guess), int(RANDOM_NUMBER))
+			print(isAnswerCorrect)
+		except ValueError:
+			print("The answer is a number")
+			isAnswerCorrect = ""
+
 		if isAnswerCorrect == "The answer is correct":
 			print('You have won!')
 			break
