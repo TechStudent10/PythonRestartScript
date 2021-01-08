@@ -1,2 +1,2 @@
 # PythonRestartScript
- A script for restarting files.
+ A script for restarting python programs.
